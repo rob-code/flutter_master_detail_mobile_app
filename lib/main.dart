@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Content_Detail.dart';
-import 'Content_Data_Model.dart';
+import 'content_detail.dart';
+import 'content_data_model.dart';
 
 void main() {
   runApp( MyApp() );
