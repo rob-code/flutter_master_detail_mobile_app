@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Content_Data_Model.dart';
+import 'content_data_model.dart';
 
 class ContentDetail extends StatelessWidget {
   final ContentDataModel contentDataModel;
