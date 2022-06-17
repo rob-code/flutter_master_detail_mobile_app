@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child:ListTile(
             title: Text(contentData[index].title,
                 style: const TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 18.0,
                   color: Colors.black54,
                   fontWeight: FontWeight.bold
                    )
