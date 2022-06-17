@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'content_detail.dart';
 import 'content_data_model.dart';
 
+//TODO: Sort out the layout of the list menu with title and subtitle on LHS
+//TODO: Put in progress icons which toggle red, amber and red based on understanding
+//TODO: Add in firebase back end - storing the information and data? How best to do it.
+//TODO: Summarise the aggregate of these toggles in the drawer
+
+
+
 void main() {
   runApp( const MyApp() );
 }
@@ -70,15 +77,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
       body: ListView.builder(
           itemCount: contentData.length,
-          itemBuilder: (context, index) {
+          itemBuilder: (BuildContext context, index) {
             return Card(
             child:ListTile(
-            title: Text(contentData[index].subtitle),
-    leading: SizedBox(
+            title: Text(contentData[index].title,
+                style: const TextStyle(
+                  fontSize: 16.0,
+                  color: Colors.black54,
+                  fontWeight: FontWeight.bold
+                   )
+            ),
+            subtitle: Text(contentData[index].subtitle),
+    /*leading: SizedBox(
     width: 100,
     height: 50,
     child: Text(contentData[index].title),
-    ),
+    ),*/
     onTap: () {
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ContentDetail(contentDataModel: contentData[index],)));
     }
@@ -88,3 +102,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
