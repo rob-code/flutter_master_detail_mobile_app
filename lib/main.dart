@@ -88,6 +88,14 @@ class _MyHomePageState extends State<MyHomePage> {
                    )
             ),
             subtitle: Text(contentData[index].subtitle),
+            trailing: Wrap(
+              spacing: 12,
+              children: const <Widget>[
+                Icon(Icons.check),
+                Icon(Icons.check_box),
+              ],
+            ),
+
     /*leading: SizedBox(
     width: 100,
     height: 50,
