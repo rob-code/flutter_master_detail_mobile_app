@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'content_detail.dart';
 import 'content_data_model.dart';
@@ -88,24 +90,63 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             subtitle: Text(contentData[index].subtitle),
             trailing: Wrap(
-              spacing: 12,
               children: const <Widget>[
-                Icon(Icons.check),
-                Icon(Icons.check_box),
+                MyStatefulWidget(),
               ],
             ),
-
-    /*leading: SizedBox(
-    width: 100,
-    height: 50,
-    child: Text(contentData[index].title),
-    ),*/
-    onTap: () {
+                onTap: () {
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ContentDetail(contentDataModel: contentData[index],)));
     }
     ));
     }
     ),
+    );
+  }
+}
+
+
+
+
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+  final List<Color> colors = <Color>[Colors.red,Colors.amber, Colors.green];
+
+  Color _iconColor = Colors.red;
+  int colorIndex= 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.check),
+          color: _iconColor,
+          tooltip: 'set learning rating',
+          onPressed: () {
+            setState(() {
+              switch(colorIndex) {
+                case 0: {_iconColor = colors.elementAt(1); }
+                colorIndex = 1;
+                break;
+
+                case 1: {_iconColor = colors.elementAt(2); }
+                colorIndex = 2;
+                break;
+
+                case 2: {_iconColor = colors.elementAt(0); }
+                colorIndex = 0;
+                break;
+              }
+
+            });
+          },
+        ),
+      ],
     );
   }
 }
