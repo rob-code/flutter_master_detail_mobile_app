@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'content_detail.dart';
 import 'content_data_model.dart';
