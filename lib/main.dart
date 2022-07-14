@@ -142,6 +142,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 break;
               }
 
+              SaveColorIndex(colorIndex);
+
+
+
+
+
+
+
             });
           },
         ),
@@ -150,3 +158,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 
+void SaveColorIndex (index) {
+  print("the value of the icon color is ${index}");
+}
