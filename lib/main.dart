@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'content_detail.dart';
 import 'content_data_model.dart';
-import 'package:provider/provider.dart';
 
 //TODO: Sort out the layout of the list menu with title and subtitle on LHS ...which is in a card. I want to have something in a simple list without the cards!!!
 //TODO: Put in progress icons which toggle red, amber and red based on understanding
 //TODO: store state of the icon buttons
 //TODO: Add in firebase back end - store the information and data? How best to do it??
 //TODO: Summarise the aggregate of these toggles in the drawer
+
+//read the colorIndex values from default array if local storage does not exist
+//if local storage does exist, get local storage array and then read values from that.
+
+
 
 void main() {
   runApp(const MyApp());
@@ -57,11 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
     ContentDataModel('title 15', 'subtitle 15', 'description 15'),
     ContentDataModel('title 16', 'subtitle 16', 'description 16'),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
           leading: Builder (
           builder: (BuildContext context) {
                return IconButton(
@@ -74,9 +77,8 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: const Drawer (
         child: Text('Header'),
       ),
-
       body: ListView.builder(
-          itemCount: contentData.length,
+           itemCount: contentData.length,
           itemBuilder: (BuildContext context, index) {
             return Card(
             child:ListTile(
@@ -103,9 +105,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
-
-
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);
   @override
@@ -113,36 +112,50 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  final List<Color> colors = <Color>[Colors.red,Colors.amber, Colors.green];
-
-  Color _iconColor = Colors.red;
-  int colorIndex= 0;
+  final List<Color> colors = <Color>[Colors.red,Colors.amber, Colors.green, Colors.grey];
+  final List<Icon> icons = <Icon>[const Icon(Icons.question_mark_outlined), const Icon(Icons.circle), const Icon(Icons.check), const Icon(Icons.circle_outlined)];
+  Color _iconColor = Colors.grey;
+  Icon _iconType = const Icon(Icons.circle_outlined);
+  int iconIndex= 0;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         IconButton(
-          icon: const Icon(Icons.check),
+          icon: _iconType,
           color: _iconColor,
           tooltip: 'set learning rating',
           onPressed: () {
             setState(() {
-              switch(colorIndex) {
-                case 0: {_iconColor = colors.elementAt(1); }
-                colorIndex = 1;
+              switch(iconIndex) {
+                case 0: {
+                  _iconColor = colors.elementAt(0);
+                  _iconType = icons.elementAt(0);
+                  iconIndex = 1; }
                 break;
 
-                case 1: {_iconColor = colors.elementAt(2); }
-                colorIndex = 2;
+                case 1: {
+                  _iconColor = colors.elementAt(1);
+                  _iconType = icons.elementAt(1);
+                  iconIndex = 2; }
                 break;
 
-                case 2: {_iconColor = colors.elementAt(0); }
-                colorIndex = 0;
+                case 2: {
+                  _iconColor = colors.elementAt(2);
+                  _iconType = icons.elementAt(2);
+                  iconIndex = 3; }
+                break;
+
+                case 3: {
+                  _iconColor = colors.elementAt(3);
+                  _iconType = icons.elementAt(3);
+                  iconIndex = 0; }
                 break;
               }
 
-              SaveColorIndex(colorIndex);
+              //var list = ScrollingList();
+              //list.print(iconIndex);
 
 
 
@@ -158,6 +171,29 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   }
 }
 
-void SaveColorIndex (index) {
-  print("the value of the icon color is ${index}");
+
+
+
+
+
+/*
+class ScrollingList {
+  int index = 0;
+  var state = _MyHomePageState();
+  int numberInList = 0;
+
+  void print(index) {
+    numberInList = state.contentData.length;
+
+    debugPrint('The counter value is  $index');
+    debugPrint(numberInList.toString());
+
+    state.contentData.forEach((element) => {
+    debugPrint(state.contentData.expand((element) => for (var value in {
+    ContentDataModel
+    }) {
+    }).toString())
+  });
+  }
 }
+*/
