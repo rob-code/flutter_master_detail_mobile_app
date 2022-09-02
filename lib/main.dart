@@ -6,7 +6,7 @@ import 'info.dart';
 //TODO: store state of the icon buttons
 //TODO: Add in firebase back end - store the information and data? How best to do it??
 //TODO: Summarise the aggregate of these toggles in the drawer
-//TODO: rename the project
+//TODO: rename the project /
 
 //read the colorIndex values from default array if local storage does not exist
 //if local storage does exist, get local storage array and then read values from that.
