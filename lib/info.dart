@@ -24,7 +24,8 @@ final List<AppContent> samples = [
   AppContent('title 13', 'subtitle 13', 'description 13'),
   AppContent('title 14', 'subtitle 14', 'description 14'),
   AppContent('title 15', 'subtitle 15', 'description 15'),
-  AppContent('title 16', 'subtitle 16', 'description 16')
+  AppContent('title 16', 'subtitle 16', 'description 16'),
+  AppContent('title 17', 'subtitle 17', 'description 17'),
 ];
 
 class ListIcon {
